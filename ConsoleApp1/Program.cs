@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OnlineExamTest
+namespace ConsoleApp1
 {
-    [TestFixture]
-    public class Class1
+    class Program
     {
-        [Test]
-        public void LoginTest()
+        static void Main(string[] args)
         {
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://51.144.34.125/");
@@ -21,6 +21,6 @@ namespace OnlineExamTest
 
             Assert.AreEqual("http://51.144.34.125/Account/Login", driver.Url);
 
-        } 
+        }
     }
 }
