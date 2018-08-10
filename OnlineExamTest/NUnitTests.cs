@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
 
 namespace OnlineExamTest
 {
@@ -17,48 +18,53 @@ namespace OnlineExamTest
         const string Admin_email = "admin@gmail.com";
         const string Admin_password = "Admin_123";
 
+        //[SetUp]
+        //public void Before()
+        //{
+        //    if (!Browser.Initialised) Browser.Initialize();
+        //    Browser.Driver.Navigate().GoToUrl("http://51.144.34.125/");
+        //}
+
+        //[TearDown]
+        //public void After()
+        //{
+        //    Browser.Quit();
+        //}
+
         [Test]
         public void LoginTest()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://51.144.34.125/");
-
-            IWebElement element = driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(4) > a"));
-            element.Click();
-            element = driver.FindElement(By.Id("emailLogin"));
-            element.SendKeys(Student_email);
-            element = driver.FindElement(By.Id("passwordLogin"));
-            element.SendKeys(Student_password);
-            element = driver.FindElement(By.Id("submitLogin"));
-            element.Click();
-            element = driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
-            var result = element.Text;
-            driver.Close();
+            if (!Browser.Initialised) Browser.Initialize();
+            Browser.Driver.Navigate().GoToUrl("http://51.144.34.125/");
+            Header header = new Header();
+            header.SignInClick();
+            LoginPage loginPage = new LoginPage();
+            loginPage.InputEmail(Student_email);
+            loginPage.InputPassword(Student_password);
+            loginPage.ClickOnSubmitNutton();
+            Loginned loginned = new Loginned();
+            var result = loginned.SignUpField();
+            Browser.Quit();
 
             StringAssert.Contains(Student_email, result.ToLowerInvariant());
-
         }
 
         [Test]
-        public void LogOutTest()
+        public void LogOuttest()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://51.144.34.125/");
-
-            IWebElement element = driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(4) > a"));
-            element.Click();
-            element = driver.FindElement(By.Id("emailLogin"));
-            element.SendKeys(Student_email);
-            element = driver.FindElement(By.Id("passwordLogin"));
-            element.SendKeys(Student_password);
-            element = driver.FindElement(By.Id("submitLogin"));
-            element.Click();
-
-            element = driver.FindElement(By.CssSelector("#logoutForm > button"));
-            element.Click();
-            element = driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
-            var result = element.Text;
-            driver.Close();
+            if (!Browser.Initialised) Browser.Initialize();
+            Browser.Driver.Navigate().GoToUrl("http://51.144.34.125/");
+            Header header = new Header();
+            header.SignInClick();
+            LoginPage loginPage = new LoginPage();
+            loginPage.InputEmail(Student_email);
+            loginPage.InputPassword(Student_password);
+            loginPage.ClickOnSubmitNutton();
+            Loginned loginned = new Loginned();
+            loginned.ClickOnLogOutButton();
+            Header NewHeader = new Header();
+            var result = NewHeader.GetSignInText();
+            Browser.Quit();
 
             StringAssert.Contains("SIGN UP", result);
         }
