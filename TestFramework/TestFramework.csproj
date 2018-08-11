@@ -49,8 +49,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs" />
+    <Compile Include="Header_POM.cs" />
     <Compile Include="LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SideBar_POM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

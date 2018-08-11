@@ -4,85 +4,56 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace TestFramework
 {
-    public static class Browser
+    public class LoginPage : BasePage
     {
-        public static IWebDriver Driver { get; set; }
-        public static bool Initialised { get; set; }
-
-        public static void Initialize()
+        public LoginPage(IWebDriver driver) : base(driver)
         {
-            Driver = new ChromeDriver();
-            Initialised = true;
         }
 
-        public static void Quit()
-        {
-            Driver.Quit();
-            Initialised = false;
-        }
-    }
-    public class LoginPage
-    {
-        private IWebElement HomeButton = Browser.Driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(2) > a"));
-        private IWebElement FieldForEmail = Browser.Driver.FindElement(By.Id("emailLogin"));
-        private IWebElement FieldForPassword = Browser.Driver.FindElement(By.Id("passwordLogin"));
-        private IWebElement SubmitButton = Browser.Driver.FindElement(By.Id("submitLogin"));
+        By FieldForEmail = By.Id("emailLogin");
+        By FieldForPassword = By.Id("passwordLogin");
+        By SubmitButton = By.Id("submitLogin");
 
-        public void HomeButtonClick()
+
+        public void Login(string email, string password)
         {
-            HomeButton.Click();
+            Initialize(FieldForEmail).SendKeys(email);
+            Initialize(FieldForPassword).SendKeys(password);
+            Initialize(SubmitButton).Click();
         }
+
         public void InputEmail(string email)
         {
-            FieldForEmail.SendKeys(email);
+            Initialize(FieldForEmail).SendKeys(email);
         }
         public void InputPassword(string password)
         {
-            FieldForPassword.SendKeys(password);
+            Initialize(FieldForPassword).SendKeys(password);
         }
         public void ClickOnSubmitNutton()
         {
-            SubmitButton.Click();
+            Initialize(SubmitButton).Click();
         }
 
     }
 
-    public class Loginned
+    public class Loginned : BasePage
     {
-        private IWebElement SignUp = Browser.Driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
-        private IWebElement LogOut = Browser.Driver.FindElement(By.CssSelector("#logoutForm > button"));
+        By SignUP = By.CssSelector("#gn-menu > li:nth-child(3) > a");
+        By LogOut = By.CssSelector("#logoutForm > button");
+
+        public Loginned(IWebDriver driver) : base(driver)
+        {
+        }
 
         public string SignUpField()
-        {
-            var result = SignUp.Text;
+        {            
+            var result = Initialize(SignUP).Text;
             return result;
         }
         public void ClickOnLogOutButton()
         {
-            LogOut.Click();
-        }
-
-    }
-
-    public class Header
-    {
-        private IWebElement SignIn = Browser.Driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(4) > a"));
-        private IWebElement SignUp = Browser.Driver.FindElement(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
-
-        public void SignInClick()
-        {
-            SignIn.Click();            
-        }
-
-        public void SignUpClick()
-        {
-            SignUp.Click();            
-        }
-
-        public string GetSignInText()
-        {
-            var text = SignUp.Text;
-            return text;
+            Initialize(LogOut).Click();
         }
 
     }
