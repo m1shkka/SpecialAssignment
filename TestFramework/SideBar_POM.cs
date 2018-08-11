@@ -6,9 +6,9 @@ namespace TestFramework
 {
     public class SideBar_POM : BasePage
     {
-        public SideBar_POM(IWebDriver driver) : base(driver)
-        {
-        }
+        //public SideBar_POM(IWebDriver driver) : base(driver)
+        //{
+        //}
 
         By uadminPanelMenuItemElement = By.CssSelector(@"a[href*='/AdminPanel/Users']");
         By newsMenuItemElement = By.CssSelector("a[href*='/AddNews/News']");

@@ -10,14 +10,19 @@ namespace TestFramework
 {
     public class Header_POM : BasePage
     {
-        public Header_POM(IWebDriver driver) : base(driver)
-        {
-        }       
-            By SignIn = By.CssSelector("#gn-menu > li:nth-child(4) > a");
-            By SignUp = By.CssSelector("#gn-menu > li:nth-child(3) > a");
-            By HomeButton = By.CssSelector("#gn-menu > li:nth-child(2) > a");
-            
-            public void HomeButtonClick()
+
+        //public Header_POM(IWebDriver driver) : base(driver)
+        //{}
+
+        //IWebDriver driver = DriverFabric.GetDriver();
+
+        By SignIn = By.CssSelector("#gn-menu > li:nth-child(4) > a");
+        By SignUp = By.CssSelector("#gn-menu > li:nth-child(3) > a");
+        By HomeButton = By.CssSelector("#gn-menu > li:nth-child(2) > a");
+
+        
+
+        public void HomeButtonClick()
             {
                 Initialize(HomeButton).Click();
             }

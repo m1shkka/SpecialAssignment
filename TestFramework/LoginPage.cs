@@ -6,9 +6,9 @@ namespace TestFramework
 {
     public class LoginPage : BasePage
     {
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-        }
+        //public LoginPage(IWebDriver driver) : base(driver)
+        //{
+        //}
 
         By FieldForEmail = By.Id("emailLogin");
         By FieldForPassword = By.Id("passwordLogin");
@@ -42,9 +42,9 @@ namespace TestFramework
         By SignUP = By.CssSelector("#gn-menu > li:nth-child(3) > a");
         By LogOut = By.CssSelector("#logoutForm > button");
 
-        public Loginned(IWebDriver driver) : base(driver)
-        {
-        }
+        //public Loginned(IWebDriver driver) : base(driver)
+        //{
+        //}
 
         public string SignUpField()
         {            

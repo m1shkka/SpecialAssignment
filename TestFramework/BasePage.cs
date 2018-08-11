@@ -11,21 +11,23 @@ namespace TestFramework
 {
     public abstract class BasePage
     {
-        public IWebDriver driver;
+        protected IWebDriver driver;
 
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
+            PageFactory.InitElements(driver, this);
+        }
+
+        public BasePage()
+        {
+
         }
 
         virtual public IWebElement Initialize(By by)
         {
+            IWebDriver driver = DriverFabric.GetDriver();
             return driver.FindElement(by);
-        }
-
-        public void goToPage()
-        {
-            driver.Navigate().GoToUrl("http://51.144.34.125/");
         }
     }
 }
