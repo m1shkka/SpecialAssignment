@@ -14,6 +14,9 @@ namespace TestFramework
         By FieldForPassword = By.Id("passwordLogin");
         By SubmitButton = By.Id("submitLogin");
 
+        public LoginPage()
+        {
+        }
 
         public void Login(string email, string password)
         {

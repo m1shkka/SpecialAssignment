@@ -22,7 +22,7 @@ namespace TestFramework
 
         
 
-        public void HomeButtonClick()
+            public void HomeButtonClick()
             {
                 Initialize(HomeButton).Click();
             }

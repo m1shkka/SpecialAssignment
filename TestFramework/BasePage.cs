@@ -10,24 +10,23 @@ using System.Threading.Tasks;
 namespace TestFramework
 {
     public abstract class BasePage
-    {
-        protected IWebDriver driver;
-
-        public BasePage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+    {        
+        protected ExtDriver driver;
 
         public BasePage()
         {
 
         }
 
+        public void SetDriver(ExtDriver driver)
+        {
+            this.driver = driver;
+        }
+
+
         virtual public IWebElement Initialize(By by)
         {
-            IWebDriver driver = DriverFabric.GetDriver();
-            return driver.FindElement(by);
+            return driver.Find(by);
         }
     }
 }

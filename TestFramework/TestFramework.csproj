@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BasePage.cs" />
     <Compile Include="DriverFabric.cs" />
+    <Compile Include="ExtDriver.cs" />
     <Compile Include="Header_POM.cs" />
     <Compile Include="LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

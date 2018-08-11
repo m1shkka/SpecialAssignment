@@ -16,7 +16,10 @@ namespace TestFramework
         By tasksMenuItemElement = By.CssSelector(@"a[href*='/CodeHistory/History']");
         By codeHistoryMenuItemElement = By.CssSelector(@"a[href*='/CourseManagement']");
         By navBarElement = By.CssSelector(".gn-icon-menu");
-                
+
+        public SideBar_POM()
+        {
+        }
 
         public void GoToNavBar()
         {

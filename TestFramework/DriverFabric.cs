@@ -1,27 +1,32 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
 
 namespace TestFramework
 {
-    public class DriverFabric
+    public class DriversFabric
     {
-        private static IWebDriver driver;
+        private static ExtDriver driver;
 
-        public static IWebDriver GetDriver()
+        public static ExtDriver Init(string browser)
         {
-            if (driver == null)
+            if(driver == null)
+            { 
+            switch (browser)
             {
-                driver = new ChromeDriver();
-                return driver;
+                case ("IE"):
+                    IWebDriver IEDriver = new InternetExplorerDriver();
+                    return new ExtDriver(IEDriver);
+                case ("Edge"):
+                    IWebDriver Edgedriver = new EdgeDriver();
+                    return new ExtDriver(Edgedriver);
+                default:
+                    IWebDriver Chromedriver = new ChromeDriver();
+                    return new ExtDriver(Chromedriver);
             }
-            else return driver;
+            }
+            return driver;
         }
-
     }
 }

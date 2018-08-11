@@ -18,27 +18,28 @@ namespace OnlineExamTest
         const string Admin_email = "admin@gmail.com";
         const string Admin_password = "Admin_123";
 
+        protected ExtDriver driver;
+
         [Test]
         public void LoginTest()
-        {           
-            IWebDriver driver = DriverFabric.GetDriver();
-            driver.Navigate().GoToUrl("http://51.144.34.125/");
+        {
+            driver = DriversFabric.Init("Chrome");
+            driver.GoToUrl("http://51.144.34.125/");
             var header = new Header_POM();
             header.SignInClick();
             var loginPage = new LoginPage();
             loginPage.Login(Student_email, Student_password);
             var loginned = new Loginned();
             var result = loginned.SignUpField();
-            driver.Quit();
+            driver.Dispose();
 
             StringAssert.Contains(Student_email, result.ToLowerInvariant());
         }
-
         [Test]
         public void LogOutTest()
         {
-            IWebDriver driver = DriverFabric.GetDriver();
-            driver.Navigate().GoToUrl("http://51.144.34.125/");
+            driver = DriversFabric.Init("Chrome");
+            driver.GoToUrl("http://51.144.34.125/");
             var header = new Header_POM();
             header.SignInClick();
             var loginPage = new LoginPage();
@@ -47,7 +48,7 @@ namespace OnlineExamTest
             loginned.ClickOnLogOutButton();
             var NewHeader = new Header_POM();
             var result = NewHeader.GetSignUpText();
-            driver.Quit();
+            driver.Dispose();
 
             StringAssert.Contains("SIGN UP", result);
         }
