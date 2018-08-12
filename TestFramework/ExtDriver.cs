@@ -27,6 +27,11 @@ namespace TestFramework
             driver.Dispose();
         }
 
+        public void refresh()
+        {
+            driver.Navigate().Refresh();
+        }
+
         public IWebElement Find(By by)
         {
             return driver.FindElement(by);
