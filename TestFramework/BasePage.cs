@@ -31,7 +31,7 @@ namespace TestFramework
 
         virtual public void Initt()
         {
-            this.driver = DriversFabric.Init();
+            this.driver = DriversFabric.Init("Chrome");
         }
     }
 }
