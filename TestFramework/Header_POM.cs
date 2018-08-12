@@ -11,44 +11,43 @@ namespace TestFramework
     public class Header_POM : BasePage
     {
 
-        //public Header_POM(IWebDriver driver) : base(driver)
-        //{}
+        IWebElement HomeButton;
+        IWebElement SignIn;
+        IWebElement SignUp;
 
-        //IWebDriver driver = DriverFabric.GetDriver();
+        public Header_POM(ExtDriver driver) : base(driver)
+        {
+        }
 
-        By SignIn = By.CssSelector("#gn-menu > li:nth-child(4) > a");
-        By SignUp = By.CssSelector("#gn-menu > li:nth-child(3) > a");
-        By HomeButton = By.CssSelector("#gn-menu > li:nth-child(2) > a");
 
-        
+        public override void Initt()
+        {
+            //this.driver = DriversFabric.Init();
+            this.SignIn = driver.Find(By.CssSelector("#gn-menu > li:nth-child(4) > a"));
+            this.SignUp = driver.Find(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
+        }
 
-            public void HomeButtonClick()
-            {
-                Initialize(HomeButton).Click();
-            }
 
-            public void SignInClick()
-            {
-                Initialize(SignIn).Click();
-            }
+        public void SignInClick()
+        {
+            SignIn.Click();
+        }
 
-            public void SignUpClick()
-            {
-            Initialize(SignUp).Click();
-            }
+        public void SignUpClick()
+        {
+            SignUp.Click();
+        }
 
-            public string GetSignInText()
-            {
-                var text = Initialize(SignIn).Text;
-                return text;
-            }
-            
-            public string GetSignUpText()
-            {
-                var text = Initialize(SignUp).Text;
-                return text;
-            }
+        public string GetSignInText()
+        {
+            var text = SignIn.Text;
+            return text;
+        }
 
-        
+        public string GetSignUpText()
+        {
+            var text = SignUp.Text;
+            return text;
+        }
     }
 }

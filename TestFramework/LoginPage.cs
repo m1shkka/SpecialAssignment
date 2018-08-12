@@ -6,57 +6,58 @@ namespace TestFramework
 {
     public class LoginPage : BasePage
     {
-        //public LoginPage(IWebDriver driver) : base(driver)
-        //{
-        //}
 
-        By FieldForEmail = By.Id("emailLogin");
-        By FieldForPassword = By.Id("passwordLogin");
-        By SubmitButton = By.Id("submitLogin");
+        IWebElement FieldForEmail; 
+        IWebElement FieldForPassword;
+        IWebElement SubmitButton;
 
-        public LoginPage()
+        public LoginPage(ExtDriver driver) : base(driver)
         {
         }
+
+        public override void Initt()
+        {
+            //this.driver = DriversFabric.Init();
+            this.FieldForEmail = driver.Find(By.Id("emailLogin"));
+            this.FieldForPassword = driver.Find(By.Id("passwordLogin"));
+            this.SubmitButton = driver.Find(By.Id("submitLogin"));
+
+        }
+
 
         public void Login(string email, string password)
         {
-            Initialize(FieldForEmail).SendKeys(email);
-            Initialize(FieldForPassword).SendKeys(password);
-            Initialize(SubmitButton).Click();
+            FieldForEmail.SendKeys(email);
+            FieldForPassword.SendKeys(password);
+            SubmitButton.Click();
         }
-
-        public void InputEmail(string email)
-        {
-            Initialize(FieldForEmail).SendKeys(email);
-        }
-        public void InputPassword(string password)
-        {
-            Initialize(FieldForPassword).SendKeys(password);
-        }
-        public void ClickOnSubmitNutton()
-        {
-            Initialize(SubmitButton).Click();
-        }
-
     }
 
     public class Loginned : BasePage
     {
-        By SignUP = By.CssSelector("#gn-menu > li:nth-child(3) > a");
-        By LogOut = By.CssSelector("#logoutForm > button");
+        IWebElement SignUP;
+        IWebElement LogOut;
 
-        //public Loginned(IWebDriver driver) : base(driver)
-        //{
-        //}
+        public Loginned(ExtDriver driver) : base(driver)
+        {
+        }
+
+        public override void Initt()
+        {
+            //this.driver = DriversFabric.Init();
+            this.SignUP = driver.Find(By.CssSelector("#gn-menu > li:nth-child(3) > a"));
+            this.LogOut = driver.Find(By.CssSelector("#logoutForm > button"));
+           
+        }
 
         public string SignUpField()
         {            
-            var result = Initialize(SignUP).Text;
+            var result = SignUP.Text;
             return result;
         }
         public void ClickOnLogOutButton()
         {
-            Initialize(LogOut).Click();
+            LogOut.Click();
         }
 
     }

@@ -13,9 +13,10 @@ namespace TestFramework
     {        
         protected ExtDriver driver;
 
-        public BasePage()
+        public BasePage(ExtDriver driver)
         {
-
+            this.driver = driver;
+            Initt();
         }
 
         public void SetDriver(ExtDriver driver)
@@ -23,10 +24,14 @@ namespace TestFramework
             this.driver = driver;
         }
 
-
         virtual public IWebElement Initialize(By by)
         {
             return driver.Find(by);
+        }
+
+        virtual public void Initt()
+        {
+            this.driver = DriversFabric.Init();
         }
     }
 }

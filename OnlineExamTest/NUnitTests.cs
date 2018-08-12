@@ -20,16 +20,17 @@ namespace OnlineExamTest
 
         protected ExtDriver driver;
 
+ 
         [Test]
         public void LoginTest()
         {
-            driver = DriversFabric.Init("Chrome");
+            driver = DriversFabric.Init();
             driver.GoToUrl("http://51.144.34.125/");
-            var header = new Header_POM();
+            var header = new Header_POM(driver);
             header.SignInClick();
-            var loginPage = new LoginPage();
+            var loginPage = new LoginPage(driver);
             loginPage.Login(Student_email, Student_password);
-            var loginned = new Loginned();
+            var loginned = new Loginned(driver);
             var result = loginned.SignUpField();
             driver.Dispose();
 
@@ -38,15 +39,15 @@ namespace OnlineExamTest
         [Test]
         public void LogOutTest()
         {
-            driver = DriversFabric.Init("Chrome");
+            driver = DriversFabric.Init();
             driver.GoToUrl("http://51.144.34.125/");
-            var header = new Header_POM();
+            var header = new Header_POM(driver);
             header.SignInClick();
-            var loginPage = new LoginPage();
+            var loginPage = new LoginPage(driver);
             loginPage.Login(Student_email, Student_password);
-            var loginned = new Loginned();
+            var loginned = new Loginned(driver);
             loginned.ClickOnLogOutButton();
-            var NewHeader = new Header_POM();
+            var NewHeader = new Header_POM(driver);
             var result = NewHeader.GetSignUpText();
             driver.Dispose();
 

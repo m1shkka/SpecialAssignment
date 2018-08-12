@@ -7,26 +7,10 @@ namespace TestFramework
 {
     public class DriversFabric
     {
-        private static ExtDriver driver;
-
-        public static ExtDriver Init(string browser)
+        public static ExtDriver Init()
         {
-            if(driver == null)
-            { 
-            switch (browser)
-            {
-                case ("IE"):
-                    IWebDriver IEDriver = new InternetExplorerDriver();
-                    return new ExtDriver(IEDriver);
-                case ("Edge"):
-                    IWebDriver Edgedriver = new EdgeDriver();
-                    return new ExtDriver(Edgedriver);
-                default:
-                    IWebDriver Chromedriver = new ChromeDriver();
-                    return new ExtDriver(Chromedriver);
-            }
-            }
-            return driver;
+            IWebDriver Chromedriver = new ChromeDriver();
+            return new ExtDriver(Chromedriver);
         }
     }
 }

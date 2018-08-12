@@ -6,44 +6,46 @@ namespace TestFramework
 {
     public class SideBar_POM : BasePage
     {
-        //public SideBar_POM(IWebDriver driver) : base(driver)
-        //{
-        //}
 
-        By uadminPanelMenuItemElement = By.CssSelector(@"a[href*='/AdminPanel/Users']");
-        By newsMenuItemElement = By.CssSelector("a[href*='/AddNews/News']");
-        By coursesMenuItemElement = By.CssSelector(@"a[href*='/CourseManagement']");
-        By tasksMenuItemElement = By.CssSelector(@"a[href*='/CodeHistory/History']");
-        By codeHistoryMenuItemElement = By.CssSelector(@"a[href*='/CourseManagement']");
-        By navBarElement = By.CssSelector(".gn-icon-menu");
+        IWebElement uadminPanelMenuItemElement;
+        IWebElement coursesMenuItemElement; 
+        IWebElement tasksMenuItemElement;
+        IWebElement codeHistoryMenuItemElement;
+        IWebElement navBarElement;
 
-        public SideBar_POM()
+        public SideBar_POM(ExtDriver driver) : base(driver)
         {
         }
 
+        public override void Initt()
+        {
+            //this.driver = DriversFabric.Init();
+            this.uadminPanelMenuItemElement = driver.Find(By.CssSelector(@"a[href*='/AdminPanel/Users']"));
+            this.coursesMenuItemElement = driver.Find(By.CssSelector(@"a[href*='/CourseManagement']"));
+            this.tasksMenuItemElement = driver.Find(By.CssSelector(@"a[href*='/CodeHistory/History']"));
+            this.codeHistoryMenuItemElement = driver.Find(By.CssSelector(@"a[href*='/CourseManagement']"));
+            this.navBarElement = driver.Find(By.CssSelector(".gn-icon-menu"));
+        }
+
+
         public void GoToNavBar()
         {
-            Initialize(navBarElement).Click();
+            navBarElement.Click();
         }               
 
         public void GoToCoursePage()
         {
-            Initialize(coursesMenuItemElement).Click();
+            coursesMenuItemElement.Click();
         }
         
         public void GoToTasksPage()
         {
-            Initialize(tasksMenuItemElement).Click();
+            tasksMenuItemElement.Click();
         }
         
         public void GoToCodeHistoryPage()
         {
-            Initialize(codeHistoryMenuItemElement).Click();
-        }
-        
-        public void GoToNewsPage()
-        {
-            Initialize(newsMenuItemElement).Click();
+            codeHistoryMenuItemElement.Click();
         }
     }
 }
